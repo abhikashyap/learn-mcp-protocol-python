@@ -1,0 +1,2 @@
+# The book may use the v1 SDK API (FastMCP). Keep examples compatible with it.
+mcp[cli]>=1.28,<2
