@@ -15,6 +15,33 @@ Follow the version used by the book when reproducing its examples.
 
 ## Create and activate a virtual environment
 
+### With uv (recommended)
+
+The project declares its dependencies in `pyproject.toml`, so these commands
+use the book-compatible MCP SDK v1 rather than installing the latest major
+version in a temporary environment:
+
+```bash
+uv sync
+uv run mcp run src/server.py
+```
+
+Avoid `uv run --with mcp` here: it asks uv for the latest SDK and can install
+v2, which is incompatible with this book-style v1 server.
+
+To explore the server in MCP Inspector, first select the working Node version
+in this repository, then launch the Inspector:
+
+```bash
+nvm use
+uv run mcp dev src/server.py
+```
+
+The `.nvmrc` file selects Node 24, which avoids the broken Homebrew Node 25
+link on this machine.
+
+### With pip
+
 From the repository root:
 
 ```bash
@@ -30,19 +57,23 @@ Git and should never be committed.
 
 ## Run the starter MCP server
 
-With the virtual environment active:
+For the Inspector, use Node 24 from `.nvmrc` on macOS, then start it with uv:
 
 ```bash
-mcp dev src/server.py
+nvm use
+uv run mcp dev src/server.py
 ```
 
 This launches the MCP Inspector for interactive exploration. The sample server
-exposes a greeting tool, a small resource, and a prompt. To run it directly over
-stdio, use:
+exposes a greeting tool, a small resource, and a prompt. If you installed with
+pip instead, activate `.venv` and replace `uv run mcp dev` with `mcp dev`.
+To run the server directly over stdio, use:
 
 ```bash
-python src/server.py
+uv run mcp run src/server.py
 ```
+
+With the pip setup, use `python src/server.py` instead.
 
 ## Suggested learning flow
 

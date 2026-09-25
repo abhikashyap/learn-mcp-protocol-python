@@ -1,0 +1,9 @@
+[project]
+name = "learn-mcp-protocol-python"
+version = "0.1.0"
+description = "Examples for learning the Model Context Protocol with Python"
+requires-python = ">=3.10"
+dependencies = ["mcp[cli]>=1.28,<2"]
+
+[tool.uv]
+package = false
